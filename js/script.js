@@ -26,3 +26,16 @@ console.log(e);
     }
 });
 
+// ”T-Shirt Info” section
+
+
+//”Register for Activities” section
+
+
+//"Payment Info" section
+
+
+//Form validation
+
+
+//Form validation messages
