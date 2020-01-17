@@ -26,11 +26,10 @@ console.log(e);
     }
 });
 
-// ”T-Shirt Info” section
-
-    // Until a theme is selected from the “Design” menu, no color options appear in the “Color” drop down and the “Color” field reads “Please select a T-shirt theme”.
+// Adds an addition option to the Color field and hides color values until the Design Theme is
 
     let color = document.getElementById('color');
+    color.placeholder = "test";
     let colorOptions = color.getElementsByTagName
     ('option');
 
@@ -39,14 +38,34 @@ console.log(e);
     let firstColor = colorOptions[0];
     console.log(firstColor);
     color.insertBefore(colorSelect, firstColor);
+    colorSelect.selected = true;
 
     for (i = 0; i < colorOptions.length; i++){   
-    if(i > 0){   
-    colorOptions[i].style.display = 'none';
-    };
+        if(i > 0){   
+        colorOptions[i].hidden = true;
+        };
     }
 
-    
+    let design = document.getElementById('design');
+    design.addEventListener('change', (e) => {
+
+        for (i = 0; i < colorOptions.length; i++){
+            if (e.target.value == 'js puns') {
+                if (i <= 3){
+                colorOptions[i].hidden = false;
+                } else {
+                colorOptions[i].hidden = true;
+                };
+
+            } else if (e.target.value == 'heart js') {
+                if (i > 3){
+                    colorOptions[i].hidden = false;
+                    } else {
+                    colorOptions[i].hidden = true;
+                    };
+            }
+        };
+    });
 
     //if design theme is blank
         // remove all color options
