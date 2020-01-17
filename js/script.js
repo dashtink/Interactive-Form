@@ -59,29 +59,16 @@ console.log(e);
 
             } else if (e.target.value == 'heart js') {
                 if (i > 3){
-                    colorOptions[i].hidden = false;
-                    } else {
-                    colorOptions[i].hidden = true;
-                    };
+                colorOptions[i].hidden = false;
+                } else {
+                colorOptions[i].hidden = true;
+                };
             }
         };
     });
 
-    //if design theme is blank
-        // remove all color options
-        // set text to "please select a tshirt"
-
-    //if design theme is JS Puns
-        // display "Cornflower Blue," "Dark Slate Grey," and "Gold."
-        // hide "Tomato," "Steel Blue," and "Dim Grey."
-     // else if design theme is I ♥ JS"
-        // display "Tomato," "Steel Blue," and "Dim Grey."
-        // hide "Cornflower Blue," "Dark Slate Grey," and "Gold."   
-
     // When a new theme is selected from the "Design" menu, both the "Color" field and drop down menu is updated.
-
-
-
+    
 
 //”Register for Activities” section
 
