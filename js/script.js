@@ -26,7 +26,7 @@ console.log(e);
     }
 });
 
-// Adds an addition option to the Color field and hides color values until the Design Theme is
+// T-Shirt: Adds an addition option to the Color field and hides color values until the Design Theme is
 
     let color = document.getElementById('color');
     color.placeholder = "test";
@@ -68,15 +68,34 @@ console.log(e);
     });
 
     // When a new theme is selected from the "Design" menu, both the "Color" field and drop down menu is updated.
-    
+
 
 //”Register for Activities” section
+
+    // If the user selects a workshop, don't allow selection of a workshop at the same day and time -- you should disable the checkbox and visually indicate that the workshop in the competing time slot isn't available. Reverse this when the activity is unchecked
+
+    // As a user selects activities, a running total should display below the list of checkboxes. 
 
 
 //"Payment Info" section
 
+    // Display payment sections based on the payment option chosen in the select menu.
+
+    // Display credit crad, hide paypal and bitcoin by default
+
+    //The selected payment option should match the displayed payment information.
+
+    //The user should not be able to select the "Select Payment Method" option on the form
 
 //Form validation
 
+    //Prevent form submission if:
+        //Name field is blank
+        //Email field must be a validly formatted e-mail address
+        //User must select at least one checkbox under the "Register for Activities" section
+        //If payment method is credit card validate for correct payment details
 
 //Form validation messages
+
+    //Display red text message near field if the validation fails, turn border red
+    //Messages should hide when the validation is corrected.
