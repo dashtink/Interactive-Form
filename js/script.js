@@ -81,6 +81,8 @@ console.log(e);
 
     // Display payment sections based on the payment option chosen in the select menu.
     let paymentMethod = document.getElementById('payment');
+    let selectMethod = document.querySelector('option[value="select method"]');
+    selectMethod.disabled = true;
     let creditCard = document.getElementById('credit-card');
     let paypal = document.getElementById('paypal');
     let bitcoin = document.getElementById('bitcoin');
@@ -107,15 +109,7 @@ console.log(e);
         
     });
 
-
-
-    // Display credit crad, hide paypal and bitcoin by default
-
-    //The selected payment option should match the displayed payment information.
-
     //The user should not be able to select the "Select Payment Method" option on the form
-
-
 
 
 //Form validation
