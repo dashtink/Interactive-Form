@@ -113,19 +113,34 @@ console.log(e);
 //Form validation
 const name = document.getElementById('name');
 const email = document.getElementById('mail');
-const name = document.getElementById('name');
 const activities = document.getElementById('activities');
 const cardNumber = document.getElementById('cc-num');
 const zipCode = document.getElementById('zip');
 const cvv = document.getElementById('cvv');
 
-
 name.addEventListener('input', (e) => {
-
-        name.setCustomValidity("test");
-        console.log('test');
-    
+    const regexCheck = /^\s*$/.test(e.target.value);
+        
+    if(regexCheck){
+        console.log(true);
+    } else {
+        console.log(false);
+    }
 });
+
+email.addEventListener('input', (e) => {
+    const regexCheck = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(e.target.value);
+        
+    if(regexCheck){
+        console.log(true);
+    } else {
+        console.log(false);
+    }
+});
+
+
+
+
 
     //Prevent form submission if:
         //Name field is blank
