@@ -109,10 +109,23 @@ console.log(e);
         
     });
 
-    //The user should not be able to select the "Select Payment Method" option on the form
-
 
 //Form validation
+const name = document.getElementById('name');
+const email = document.getElementById('mail');
+const name = document.getElementById('name');
+const activities = document.getElementById('activities');
+const cardNumber = document.getElementById('cc-num');
+const zipCode = document.getElementById('zip');
+const cvv = document.getElementById('cvv');
+
+
+name.addEventListener('input', (e) => {
+
+        name.setCustomValidity("test");
+        console.log('test');
+    
+});
 
     //Prevent form submission if:
         //Name field is blank
