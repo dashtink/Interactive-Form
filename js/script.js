@@ -138,7 +138,36 @@ email.addEventListener('input', (e) => {
     }
 });
 
+cardNumber.addEventListener('input', (e) => {
+    const regexCheck = /(^[0-9]{12,15})\d$/.test(e.target.value);
+        
+    if(regexCheck){
+        console.log(true);
+    } else {
+        console.log(false);
+    }
+});
 
+
+zipCode.addEventListener('input', (e) => {
+    const regexCheck = /(^[0-9]{4})\d$/.test(e.target.value);
+        
+    if(regexCheck){
+        console.log(true);
+    } else {
+        console.log(false);
+    }
+});
+
+cvv.addEventListener('input', (e) => {
+    const regexCheck = /(^[0-9]{2})\d$/.test(e.target.value);
+        
+    if(regexCheck){
+        console.log(true);
+    } else {
+        console.log(false);
+    }
+});
 
 
 
