@@ -127,14 +127,18 @@ const zipError = document.getElementById('zip-error');
 zipError.style.display = 'none';
 const cvvError = document.getElementById('cvv-error');
 cvvError.style.display = 'none';
+const submit = document.querySelector('button');
+
 
 name.addEventListener('input', (e) => {
     const regexCheck = /^\s*$/.test(e.target.value);
         
     if(regexCheck){
         nameError.style.display = '';
+        submit.disabled = 'true';
     } else {
         nameError.style.display = 'none';
+        submit.disabled = 'false';
     }
 });
 
@@ -143,8 +147,10 @@ email.addEventListener('input', (e) => {
         
     if(regexCheck){
         mailError.style.display = 'none';
+        submit.disabled = 'false';
     } else {
         mailError.style.display = '';
+        submit.disabled = 'true';
     }
 });
 
@@ -153,8 +159,10 @@ cardNumber.addEventListener('input', (e) => {
         
     if(regexCheck){
         ccnumError.style.display = 'none';
+        submit.disabled = 'false';
     } else {
         ccnumError.style.display = '';
+        submit.disabled = 'true';
 
     }
 });
@@ -165,8 +173,10 @@ zipCode.addEventListener('input', (e) => {
         
     if(regexCheck){
         zipError.style.display = 'none';
+        submit.disabled = 'false';
     } else {
         zipError.style.display = '';
+        submit.disabled = 'true';
     }
 });
 
@@ -175,8 +185,10 @@ cvv.addEventListener('input', (e) => {
         
     if(regexCheck){
         cvvError.style.display = 'none';
+        submit.disabled = 'false';
     } else {
         cvvError.style.display = '';
+        submit.disabled = 'true';
     }
 });
 
