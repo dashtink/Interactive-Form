@@ -22,11 +22,11 @@
         
         <label for="name">Name:</label>
         <input type="text" id="name" name="user-name">
-        <span class="validation">Name cannot be blank.</span>
+        <span class="validation" id="name-error">Name cannot be blank.</span>
         
         <label for="mail">Email:</label>
         <input type="email" id="mail" name="user-email">
-        <span class="validation">Must be a valid email address.</span>
+        <span class="validation" id="mail-error">Must be a valid email address.</span>
         
         <label for="title">Job Role</label>
         <select id="title" name="user-title">
@@ -127,19 +127,19 @@
           <div class="col-6 col">
             <label for="cc-num">Card Number:</label>
             <input id="cc-num" name="user-cc-num" type="text">
-            <span class="validation">Invalid credit card number</span>
+            <span class="validation" id="ccnum-error">Invalid credit card number</span>
           </div>
 
           <div class="col-3 col">
             <label for="zip">Zip Code:</label>
             <input id="zip" name="user-zip" type="text"> 
-            <span class="validation">Invalid credit zip code</span>
+            <span class="validation" id="zip-error">Invalid credit zip code</span>
           </div>
 
           <div class="col-3 col">
             <label for="cvv">CVV:</label>
             <input id="cvv" name="user-cvv" type="text"> 
-            <span class="validation">Invalid CVV number.</span>
+            <span class="validation" id="cvv-error">Invalid CVV number.</span>
           </div>
 
           <label for="exp-month">Expiration Date:</label>

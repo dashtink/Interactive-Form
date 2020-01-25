@@ -136,6 +136,10 @@ option {
   Page Styles
 ==================================== */
 
+.validation {
+	color: red;
+}
+
 .container {
 	margin: auto;
 	max-width: 680px;

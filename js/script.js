@@ -117,14 +117,24 @@ const activities = document.getElementById('activities');
 const cardNumber = document.getElementById('cc-num');
 const zipCode = document.getElementById('zip');
 const cvv = document.getElementById('cvv');
+const nameError = document.getElementById('name-error');
+nameError.style.display = 'none';
+const mailError = document.getElementById('mail-error');
+mailError.style.display = 'none';
+const ccnumError = document.getElementById('ccnum-error');
+ccnumError.style.display = 'none';
+const zipError = document.getElementById('zip-error');
+zipError.style.display = 'none';
+const cvvError = document.getElementById('cvv-error');
+cvvError.style.display = 'none';
 
 name.addEventListener('input', (e) => {
     const regexCheck = /^\s*$/.test(e.target.value);
         
     if(regexCheck){
-        console.log(true);
+        nameError.style.display = '';
     } else {
-        console.log(false);
+        nameError.style.display = 'none';
     }
 });
 
@@ -132,9 +142,9 @@ email.addEventListener('input', (e) => {
     const regexCheck = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(e.target.value);
         
     if(regexCheck){
-        console.log(true);
+        mailError.style.display = 'none';
     } else {
-        console.log(false);
+        mailError.style.display = '';
     }
 });
 
@@ -142,9 +152,10 @@ cardNumber.addEventListener('input', (e) => {
     const regexCheck = /(^[0-9]{12,15})\d$/.test(e.target.value);
         
     if(regexCheck){
-        console.log(true);
+        ccnumError.style.display = 'none';
     } else {
-        console.log(false);
+        ccnumError.style.display = '';
+
     }
 });
 
@@ -153,9 +164,9 @@ zipCode.addEventListener('input', (e) => {
     const regexCheck = /(^[0-9]{4})\d$/.test(e.target.value);
         
     if(regexCheck){
-        console.log(true);
+        zipError.style.display = 'none';
     } else {
-        console.log(false);
+        zipError.style.display = '';
     }
 });
 
@@ -163,21 +174,12 @@ cvv.addEventListener('input', (e) => {
     const regexCheck = /(^[0-9]{2})\d$/.test(e.target.value);
         
     if(regexCheck){
-        console.log(true);
+        cvvError.style.display = 'none';
     } else {
-        console.log(false);
+        cvvError.style.display = '';
     }
 });
 
+ //User must select at least one checkbox under the "Register for Activities" section
 
-
-    //Prevent form submission if:
-        //Name field is blank
-        //Email field must be a validly formatted e-mail address
-        //User must select at least one checkbox under the "Register for Activities" section
-        //If payment method is credit card validate for correct payment details
-
-//Form validation messages
-
-    //Display red text message near field if the validation fails, turn border red
-    //Messages should hide when the validation is corrected.
+//Prevent form submission if any validation breaks
