@@ -199,11 +199,23 @@ form.addEventListener('submit', (e) => {
 // Activity Section
 
 const totalCost = document.createElement('p');
-totalCost.textContent = "$0.00";
+let startingCost = 0;
+totalCost.textContent = startingCost;
 activities[0].appendChild(totalCost);
 
 activities[0].addEventListener('change', (e) => {
     const checkboxSelection = e.target;
-    const datacost = checkboxSelection['data-cost'];
+    const datacost = checkboxSelection.getAttribute('data-cost');
     console.log(datacost);
+
+    if (checkboxSelection.checked){
+        console.log('checked');
+        startingCost += parseInt(datacost);
+        console.log(startingCost);
+    } else {
+        console.log('unchecked');
+        startingCost -= parseInt(datacost);
+        console.log(startingCost);
+    }
+    
 });
