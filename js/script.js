@@ -105,7 +105,7 @@ paymentMethod.addEventListener('change', (e) => {
 //Adds Form Validation for Name, Email, Credit Card Number, Zip Code and CVV
 const name = document.getElementById('name');
 const email = document.getElementById('mail');
-const activities = document.getElementById('activities');
+const activities = document.getElementsByClassName('activities');
 const cardNumber = document.getElementById('cc-num');
 const zipCode = document.getElementById('zip');
 const cvv = document.getElementById('cvv');
@@ -120,6 +120,7 @@ zipError.style.display = 'none';
 const cvvError = document.getElementById('cvv-error');
 cvvError.style.display = 'none';
 const submit = document.querySelector('button');
+const form = document.querySelector('form');
 
 
 name.addEventListener('input', (e) => {
@@ -190,6 +191,19 @@ cvv.addEventListener('input', (e) => {
  //User must select at least one checkbox under the "Register for Activities" section
     //Prevent form submission if less than one activity is selected
 
-submit.addEventListener('submit', (e) => {
+form.addEventListener('submit', (e) => {
     console.log('test');
+    //move validation checks into funcitons which are called here
+});
+
+// Activity Section
+
+const totalCost = document.createElement('p');
+totalCost.textContent = "$0.00";
+activities[0].appendChild(totalCost);
+
+activities[0].addEventListener('change', (e) => {
+    const checkboxSelection = e.target;
+    const datacost = checkboxSelection['data-cost'];
+    console.log(datacost);
 });
