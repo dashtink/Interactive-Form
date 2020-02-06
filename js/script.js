@@ -76,6 +76,8 @@ design.addEventListener('change', (e) => {
 let paymentMethod = document.getElementById('payment');
 let selectMethod = document.querySelector('option[value="select method"]');
 selectMethod.disabled = true;
+let creditCardMethod = document.querySelector('option[value="credit card"]');
+creditCardMethod.selected = 'true';
 let creditCard = document.getElementById('credit-card');
 let paypal = document.getElementById('paypal');
 let bitcoin = document.getElementById('bitcoin');
@@ -84,17 +86,14 @@ bitcoin.style.display = 'none';
 
 paymentMethod.addEventListener('change', (e) => {
     if (e.target.value === "paypal") {
-        console.log('paypal listener works');
         paypal.style.display = '';
         bitcoin.style.display = 'none';
         creditCard.style.display = 'none';
     } else if (e.target.value === "bitcoin") {
-        console.log('bitcoin listener works');
         paypal.style.display = 'none';
         bitcoin.style.display = '';
         creditCard.style.display = 'none';
     } else if (e.target.value === "credit card") {
-        console.log('bitcoin listener works');
         paypal.style.display = 'none';
         bitcoin.style.display = 'none';
         creditCard.style.display = '';
@@ -147,6 +146,10 @@ email.addEventListener('input', (e) => {
     }
 });
 
+// activities.addEventListener('input', (e) => {
+    
+// });
+
 cardNumber.addEventListener('input', (e) => {
     const regexCheck = /(^[0-9]{12,15})\d$/.test(e.target.value);
 
@@ -186,3 +189,7 @@ cvv.addEventListener('input', (e) => {
 
  //User must select at least one checkbox under the "Register for Activities" section
     //Prevent form submission if less than one activity is selected
+
+submit.addEventListener('submit', (e) => {
+    console.log('test');
+});
