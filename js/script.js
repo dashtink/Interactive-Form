@@ -1,17 +1,17 @@
-//Automatically focus on the first field
+//Automatically focus on the "Name" field when the page is loaded.
 document.getElementById('name').focus();
 const titleOther = document.getElementById('title-other');
 const titleOtherLabel = document.getElementById('title-other-label');
 titleOther.style.display = 'none';
 titleOtherLabel.style.display = 'none';
 
-// If "Other" is selected as the Job Role, adds an additional other text field.
-
+// If the "Job Role" field is set to "Other" add and additional "Other field"
 const title = document.getElementById('title')
 console.log(title);
 const titleValue = title.value;
 console.log(titleValue);
 
+// Checks if the "Job Role" field is changed.
 title.addEventListener('change', (e) => {
 console.log(e);
     if (e.target.value == 'other') {
@@ -23,8 +23,7 @@ console.log(e);
     }
 });
 
-// T-Shirt: Adds an addition option to the Color field and hides color values until the Design Theme is
-
+// Hides "Color" theme options until a selection is made in the "Design" field.
 let color = document.getElementById('color');
 color.placeholder = "test";
 let colorOptions = color.getElementsByTagName('option');
@@ -35,17 +34,20 @@ console.log(firstColor);
 color.insertBefore(colorSelect, firstColor);
 colorSelect.selected = true;
 
+// Loops over and hides themes in the "Color" field.
 for (i = 0; i < colorOptions.length; i++) {
     if (i > 0) {
         colorOptions[i].hidden = true;
     };
 }
 
+// Hides and shows the options in the "Color" field based on the "Design" field seleciton. 
 let design = document.getElementById('design');
 design.addEventListener('change', (e) => {
 
     for (i = 0; i < colorOptions.length; i++) {
         if (e.target.value == 'js puns') {
+            colorSelect.selected = true;
             if (i <= 3) {
                 colorOptions[i].hidden = false;
             } else {
@@ -53,6 +55,7 @@ design.addEventListener('change', (e) => {
             };
 
         } else if (e.target.value == 'heart js') {
+            colorSelect.selected = true;
             if (i > 3) {
                 colorOptions[i].hidden = false;
             } else {
@@ -200,22 +203,27 @@ form.addEventListener('submit', (e) => {
 
 const totalCost = document.createElement('p');
 let startingCost = 0;
-totalCost.textContent = startingCost;
+totalCost.textContent = "Total: $" + startingCost;
 activities[0].appendChild(totalCost);
 
 activities[0].addEventListener('change', (e) => {
     const checkboxSelection = e.target;
     const datacost = checkboxSelection.getAttribute('data-cost');
+    const dateTime = checkboxSelection.getAttribute('data-day-and-time');
     console.log(datacost);
-
+    console.log(dateTime);
+ 
     if (checkboxSelection.checked){
         console.log('checked');
         startingCost += parseInt(datacost);
         console.log(startingCost);
+        totalCost.textContent = "Total: $" + startingCost;
     } else {
         console.log('unchecked');
         startingCost -= parseInt(datacost);
         console.log(startingCost);
+        totalCost.textContent = "Total: $" + startingCost;
     }
-    
+
+    //loop over activites checkboxes
 });
