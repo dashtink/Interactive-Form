@@ -65,15 +65,6 @@ design.addEventListener('change', (e) => {
     };
 });
 
-// Need to add: When a new theme is selected from the "Design" menu, both the "Color" field and drop down menu is updated.
-
-
-// Need to add: ”Register for Activities” section
-
-    // If the user selects a workshop, don't allow selection of a workshop at the same day and time -- you should disable the checkbox and visually indicate that the workshop in the competing time slot isn't available. Reverse this when the activity is unchecked
-
-    // As a user selects activities, a running total should display below the list of checkboxes. 
-
 
 // Displays payment sections based on the payment option chosen in the select menu.
 let paymentMethod = document.getElementById('payment');
@@ -86,6 +77,7 @@ let paypal = document.getElementById('paypal');
 let bitcoin = document.getElementById('bitcoin');
 paypal.style.display = 'none';
 bitcoin.style.display = 'none';
+
 
 paymentMethod.addEventListener('change', (e) => {
     if (e.target.value === "paypal") {
@@ -105,7 +97,7 @@ paymentMethod.addEventListener('change', (e) => {
 });
 
 
-//Adds Form Validation for Name, Email, Credit Card Number, Zip Code and CVV
+// Adds Form Validation for Name, Email, Credit Card Number, Zip Code and CVV fields.
 const name = document.getElementById('name');
 const email = document.getElementById('mail');
 const activities = document.getElementsByClassName('activities');
@@ -125,78 +117,101 @@ cvvError.style.display = 'none';
 const submit = document.querySelector('button');
 const form = document.querySelector('form');
 
-
-name.addEventListener('input', (e) => {
-    const regexCheck = /^\s*$/.test(e.target.value);
+// Name Field Validation
+function nameCheck(){
+    const regexCheck = /^\s*$/.test(name.value);
 
     if (regexCheck) {
         nameError.style.display = '';
         submit.disabled = 'true';
+        return true;
     } else {
         nameError.style.display = 'none';
         submit.disabled = 'false';
-    }
+        return false;
+    };
+};
+
+name.addEventListener('input', () => {
+    nameCheck();
 });
 
-email.addEventListener('input', (e) => {
-    const regexCheck = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(e.target.value);
+// Email Field Validation
+function emailCheck(){
+    const regexCheck = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email.value);
 
     if (regexCheck) {
         mailError.style.display = 'none';
         submit.disabled = 'false';
+        return false;
     } else {
         mailError.style.display = '';
         submit.disabled = 'true';
-    }
+        return true;
+    };
+};
+
+email.addEventListener('input', () => {
+    emailCheck();    
 });
 
-// activities.addEventListener('input', (e) => {
-    
-// });
-
-cardNumber.addEventListener('input', (e) => {
-    const regexCheck = /(^[0-9]{12,15})\d$/.test(e.target.value);
+// Credit Card Field Validation
+function cardCheck(){
+    const regexCheck = /(^[0-9]{12,15})\d$/.test(cardNumber.value);
 
     if (regexCheck) {
         ccnumError.style.display = 'none';
         submit.disabled = 'false';
+        return false;
     } else {
         ccnumError.style.display = '';
         submit.disabled = 'true';
-    }
+        return true;
+    };
+};
+
+cardNumber.addEventListener('input', () => {
+    cardCheck();
 });
 
-
-zipCode.addEventListener('input', (e) => {
-    const regexCheck = /(^[0-9]{4})\d$/.test(e.target.value);
+// Zip Code Field Validation
+function zipCheck(){
+    const regexCheck = /(^[0-9]{4})\d$/.test(zipCode.value);
 
     if (regexCheck) {
         zipError.style.display = 'none';
         submit.disabled = 'false';
+        return false;
     } else {
         zipError.style.display = '';
         submit.disabled = 'true';
-    }
+        return true;
+    };
+};
+
+
+zipCode.addEventListener('input', () => {
+    zipCheck();
 });
 
-cvv.addEventListener('input', (e) => {
-    const regexCheck = /(^[0-9]{2})\d$/.test(e.target.value);
+// CVV Field Validation
+function cvvCheck() {
+    const regexCheck = /(^[0-9]{2})\d$/.test(cvv.value);
 
     if (regexCheck) {
         cvvError.style.display = 'none';
         submit.disabled = 'false';
+        return false;
     } else {
         cvvError.style.display = '';
         submit.disabled = 'true';
-    }
-});
+        return true;
+    };
+};
 
- //User must select at least one checkbox under the "Register for Activities" section
-    //Prevent form submission if less than one activity is selected
 
-form.addEventListener('submit', (e) => {
-    console.log('test');
-    //move validation checks into funcitons which are called here
+cvv.addEventListener('input', () => {
+   cvvCheck();
 });
 
 // Activity Section
@@ -227,3 +242,40 @@ activities[0].addEventListener('change', (e) => {
 
     //loop over activites checkboxes
 });
+
+
+
+ //User must select at least one checkbox under the "Register for Activities" section
+    //Prevent form submission if less than one activity is selected
+    function testsubmit(){
+    let submittest = false;
+    };
+
+    form.addEventListener('submit', (e) => {
+        console.log('test');
+        //move validation checks into funcitons which are called here
+        if (nameCheck()){
+            e.preventDefault();
+            console.log('name validation failed');
+        };
+        
+        if (emailCheck()){
+            e.preventDefault();
+            console.log('Email validation failed');
+        };
+
+        if (paymentMethod.value == "credit card" && cardCheck()){
+            e.preventDefault();
+            console.log('Credit Card validation failed');
+        };
+
+        if (paymentMethod.value == "credit card" && zipCheck()){
+            e.preventDefault();
+            console.log('Zip validation failed');
+        };
+
+        if (paymentMethod.value == "credit card" && cvvCheck()){
+            e.preventDefault();
+            console.log('Cvv validation failed');
+        };
+    });
