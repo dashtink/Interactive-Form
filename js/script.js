@@ -278,4 +278,8 @@ activities[0].addEventListener('change', (e) => {
             e.preventDefault();
             console.log('Cvv validation failed');
         };
+
+        if (nameCheck() || emailCheck() || (paymentMethod.value == "credit card" && cardCheck()) || (paymentMethod.value == "credit card" && zipCheck()) || (paymentMethod.value == "credit card" && cvvCheck()) != true ){
+        console.log("tis true");
+        };
     });
