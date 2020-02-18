@@ -220,6 +220,9 @@ const totalCost = document.createElement('p');
 let startingCost = 0;
 totalCost.textContent = "Total: $" + startingCost;
 activities[0].appendChild(totalCost);
+const activitiesError = document.getElementById('activities-error');
+activitiesError.style.display = "none";
+console.log(activitiesError);
 
 activities[0].addEventListener('change', (e) => {
     const checkboxSelection = e.target;
@@ -244,12 +247,20 @@ activities[0].addEventListener('change', (e) => {
 });
 
 
-
- //User must select at least one checkbox under the "Register for Activities" section
-    //Prevent form submission if less than one activity is selected
-    function testsubmit(){
-    let submittest = false;
+//Validates if there is at least 1 checkbox checked
+function checkboxCheck() {
+    const checkboxes = document.querySelectorAll('input[type=checkbox]');
+    let numberChecked = 0;
+    for(i = 0; i < checkboxes.length; i++){
+        if(checkboxes[i].checked){
+            console.log(checkboxes[i]); 
+            numberChecked =+ 1;
+        };
     };
+    return numberChecked;
+};
+
+//Submit event listener that runs function to validate fields.
 
     form.addEventListener('submit', (e) => {
         console.log('test');
@@ -279,7 +290,8 @@ activities[0].addEventListener('change', (e) => {
             console.log('Cvv validation failed');
         };
 
-        if (nameCheck() || emailCheck() || (paymentMethod.value == "credit card" && cardCheck()) || (paymentMethod.value == "credit card" && zipCheck()) || (paymentMethod.value == "credit card" && cvvCheck()) != true ){
-        console.log("tis true");
-        };
+        if(checkboxCheck() == 0){
+            console.log("checkbox true");
+            activitiesError.style.display = '';
+        }
     });
