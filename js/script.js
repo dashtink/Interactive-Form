@@ -215,7 +215,6 @@ cvv.addEventListener('input', () => {
 });
 
 // Activity Section
-
 const totalCost = document.createElement('p');
 let startingCost = 0;
 totalCost.textContent = "Total: $" + startingCost;
@@ -223,6 +222,7 @@ activities[0].appendChild(totalCost);
 const activitiesError = document.getElementById('activities-error');
 activitiesError.style.display = "none";
 console.log(activitiesError);
+const checkboxes = document.querySelectorAll('input[type=checkbox]');
 
 activities[0].addEventListener('change', (e) => {
     const checkboxSelection = e.target;
@@ -241,19 +241,35 @@ activities[0].addEventListener('change', (e) => {
         startingCost -= parseInt(datacost);
         console.log(startingCost);
         totalCost.textContent = "Total: $" + startingCost;
-    }
+    };
 
-    //loop over activites checkboxes
+
+    //Check if activites at the same time are selected.
+    for(i = 0; i < checkboxes.length; i++){
+    
+       let checkboxDateTime = checkboxes[i].getAttribute('data-day-and-time');
+
+       if(checkboxes[i] == checkboxSelection){
+           console.log('this is the same');
+       } else if(checkboxDateTime == dateTime && !checkboxes[i].checked){
+            checkboxes[i].disabled = true;
+        } else if(checkboxDateTime == dateTime && !checkboxSelection.checked){
+            checkboxes[i].disabled = false;
+        } 
+        
+        // if(checkboxDateTime == dateTime && checkboxes[i].disabled){
+        //     checkboxes[i].disabled = false; 
+        // }
+
+    };
 });
 
 
-//Validates if there is at least 1 checkbox checked
+//Validates if there is at least one checkbox checked
 function checkboxCheck() {
-    const checkboxes = document.querySelectorAll('input[type=checkbox]');
     let numberChecked = 0;
     for(i = 0; i < checkboxes.length; i++){
         if(checkboxes[i].checked){
-            console.log(checkboxes[i]); 
             numberChecked =+ 1;
         };
     };
@@ -261,10 +277,9 @@ function checkboxCheck() {
 };
 
 //Submit event listener that runs function to validate fields.
-
     form.addEventListener('submit', (e) => {
         console.log('test');
-        //move validation checks into funcitons which are called here
+       
         if (nameCheck()){
             e.preventDefault();
             console.log('name validation failed');
