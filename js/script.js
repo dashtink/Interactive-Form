@@ -104,28 +104,69 @@ const activities = document.getElementsByClassName('activities');
 const cardNumber = document.getElementById('cc-num');
 const zipCode = document.getElementById('zip');
 const cvv = document.getElementById('cvv');
-const nameError = document.getElementById('name-error');
-nameError.style.display = 'none';
-const mailError = document.getElementById('mail-error');
-mailError.style.display = 'none';
-const ccnumError = document.getElementById('ccnum-error');
-ccnumError.style.display = 'none';
-const zipError = document.getElementById('zip-error');
-zipError.style.display = 'none';
-const cvvError = document.getElementById('cvv-error');
-cvvError.style.display = 'none';
+// const nameError = document.getElementById('name-error');
+// nameError.style.display = 'none';
+// const mailError = document.getElementById('mail-error');
+// mailError.style.display = 'none';
+// const ccnumError = document.getElementById('ccnum-error');
+// ccnumError.style.display = 'none';
+// const zipError = document.getElementById('zip-error');
+// zipError.style.display = 'none';
+// const cvvError = document.getElementById('cvv-error');
+// cvvError.style.display = 'none';
 const submit = document.querySelector('button');
 const form = document.querySelector('form');
+
+//Creates Error Messages
+const basicFieldset = document.getElementById("basic-info")
+
+const nameErrorMessage = document.createElement('span');
+nameErrorMessage.className = 'validation';
+nameErrorMessage.id = 'name-error';
+nameErrorMessage.style.display = 'none';
+nameErrorMessage.textContent = "Name cannot be blank.";
+basicFieldset.insertBefore(nameErrorMessage, name);
+
+const emailErrorMessage = document.createElement('span');
+emailErrorMessage.className = 'validation';
+emailErrorMessage.id = 'mail-error';
+emailErrorMessage.style.display = 'none';
+emailErrorMessage.textContent = "Must be a valid email address.";
+basicFieldset.insertBefore(emailErrorMessage, email);
+
+const paymentsFieldset = document.getElementById("payments")
+
+const cardErrorMessage = document.createElement('span');
+cardErrorMessage.className = 'validation';
+cardErrorMessage.id = 'ccnum-error';
+cardErrorMessage.style.display = 'none';
+cardErrorMessage.textContent = "Invalid credit card number. ";
+paymentsFieldset.appendChild(cardErrorMessage);
+
+const zipErrorMessage = document.createElement('span');
+zipErrorMessage.className = 'validation';
+zipErrorMessage.id = 'zip-error';
+zipErrorMessage.style.display = 'none';
+zipErrorMessage.textContent = "Invalid credit zip code. ";
+paymentsFieldset.insertBefore(zipErrorMessage, creditCard);
+paymentsFieldset.appendChild(zipErrorMessage);
+
+const ccvErrorMessage = document.createElement('span');
+ccvErrorMessage.className = 'validation';
+ccvErrorMessage.id = 'cvv-error';
+ccvErrorMessage.style.display = 'none';
+ccvErrorMessage.textContent = "Invalid CVV number. ";
+paymentsFieldset.appendChild(ccvErrorMessage);
 
 // Name Field Validation
 function nameCheck(){
     const regexCheck = /^\s*$/.test(name.value);
 
     if (regexCheck) {
-        nameError.style.display = '';
+        nameErrorMessage.style.display = '';
         return true;
     } else {
-        nameError.style.display = 'none';
+        nameErrorMessage.style.display = 'none';
         return false;
     };
 };
@@ -139,10 +180,10 @@ function emailCheck(){
     const regexCheck = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email.value);
 
     if (regexCheck) {
-        mailError.style.display = 'none';
+        emailErrorMessage.style.display = 'none';
         return false;
     } else {
-        mailError.style.display = '';
+        emailErrorMessage.style.display = '';
         return true;
     };
 };
@@ -156,10 +197,10 @@ function cardCheck(){
     const regexCheck = /(^[0-9]{12,15})\d$/.test(cardNumber.value);
 
     if (regexCheck) {
-        ccnumError.style.display = 'none';
+        cardErrorMessage.style.display = 'none';
         return false;
     } else {
-        ccnumError.style.display = '';
+        cardErrorMessage.style.display = '';
         return true;
     };
 };
@@ -173,10 +214,10 @@ function zipCheck(){
     const regexCheck = /(^[0-9]{4})\d$/.test(zipCode.value);
 
     if (regexCheck) {
-        zipError.style.display = 'none';
+        zipErrorMessage.style.display = 'none';
         return false;
     } else {
-        zipError.style.display = '';
+        zipErrorMessage.style.display = '';
         return true;
     };
 };
@@ -191,10 +232,10 @@ function cvvCheck() {
     const regexCheck = /(^[0-9]{2})\d$/.test(cvv.value);
 
     if (regexCheck) {
-        cvvError.style.display = 'none';
+        ccvErrorMessage.style.display = 'none';
         return false;
     } else {
-        cvvError.style.display = '';
+        ccvErrorMessage.style.display = '';
         return true;
     };
 };
@@ -213,6 +254,14 @@ const activitiesError = document.getElementById('activities-error');
 activitiesError.style.display = "none";
 console.log(activitiesError);
 const checkboxes = document.querySelectorAll('input[type=checkbox]');
+
+const activitiesFieldset = document.getElementById("activities");
+const activitiesErrorMessage = document.createElement('span');
+activitiesErrorMessage.className = 'validation';
+activitiesErrorMessage.id = 'activities-error';
+activitiesErrorMessage.style.display = 'none';
+activitiesErrorMessage.textContent = "Must register for at least one activity.";
+activities[0].appendChild(activitiesErrorMessage);
 
 activities[0].addEventListener('change', (e) => {
     const checkboxSelection = e.target;
@@ -293,6 +342,6 @@ function checkboxCheck() {
 
         if(checkboxCheck() == 0){
             console.log("checkbox true");
-            activitiesError.style.display = '';
+            activitiesErrorMessage.style.display = '';
         }
     });
