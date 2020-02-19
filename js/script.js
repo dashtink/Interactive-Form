@@ -104,16 +104,6 @@ const activities = document.getElementsByClassName('activities');
 const cardNumber = document.getElementById('cc-num');
 const zipCode = document.getElementById('zip');
 const cvv = document.getElementById('cvv');
-// const nameError = document.getElementById('name-error');
-// nameError.style.display = 'none';
-// const mailError = document.getElementById('mail-error');
-// mailError.style.display = 'none';
-// const ccnumError = document.getElementById('ccnum-error');
-// ccnumError.style.display = 'none';
-// const zipError = document.getElementById('zip-error');
-// zipError.style.display = 'none';
-// const cvvError = document.getElementById('cvv-error');
-// cvvError.style.display = 'none';
 const submit = document.querySelector('button');
 const form = document.querySelector('form');
 
@@ -267,6 +257,7 @@ activities[0].addEventListener('change', (e) => {
     const checkboxSelection = e.target;
     const datacost = checkboxSelection.getAttribute('data-cost');
     const dateTime = checkboxSelection.getAttribute('data-day-and-time');
+    const activityName = checkboxSelection.getAttribute('name');
     console.log(datacost);
     console.log(dateTime);
  
@@ -287,18 +278,27 @@ activities[0].addEventListener('change', (e) => {
     for(i = 0; i < checkboxes.length; i++){
     
        let checkboxDateTime = checkboxes[i].getAttribute('data-day-and-time');
+       let checkboxName = checkboxes[i].getAttribute('name');
 
-       if(checkboxes[i] == checkboxSelection){
-           console.log('this is the same');
-       } else if(checkboxDateTime == dateTime && !checkboxes[i].checked){
-            checkboxes[i].disabled = true;
-        } else if(checkboxDateTime == dateTime && !checkboxSelection.checked){
-            checkboxes[i].disabled = false;
-        } 
+       if(checkboxSelection.checked){
+            if(checkboxDateTime == dateTime && activityName !== checkboxName){
+                checkboxes[i].disabled = true;
+                console.log('checked');
+            }; 
+       } else if(!checkboxSelection.checked){
+            if(checkboxDateTime == dateTime && activityName !== checkboxName){
+                checkboxes[i].disabled = false;
+                console.log('unchecked');
+            }; 
+        };
+    };
+    });
 
+activities[0].addEventListener('input', (e) => {
+    if(checkboxCheck() < 1){
+        activitiesErrorMessage.style.display = '';
     };
 });
-
 
 //Validates if there is at least one checkbox checked
 function checkboxCheck() {
@@ -341,7 +341,7 @@ function checkboxCheck() {
         };
 
         if(checkboxCheck() == 0){
-            console.log("checkbox true");
+            console.log("Checkbox validation failed");
             activitiesErrorMessage.style.display = '';
         }
     });
