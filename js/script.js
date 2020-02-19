@@ -123,11 +123,9 @@ function nameCheck(){
 
     if (regexCheck) {
         nameError.style.display = '';
-        submit.disabled = 'true';
         return true;
     } else {
         nameError.style.display = 'none';
-        submit.disabled = 'false';
         return false;
     };
 };
@@ -142,11 +140,9 @@ function emailCheck(){
 
     if (regexCheck) {
         mailError.style.display = 'none';
-        submit.disabled = 'false';
         return false;
     } else {
         mailError.style.display = '';
-        submit.disabled = 'true';
         return true;
     };
 };
@@ -161,11 +157,9 @@ function cardCheck(){
 
     if (regexCheck) {
         ccnumError.style.display = 'none';
-        submit.disabled = 'false';
         return false;
     } else {
         ccnumError.style.display = '';
-        submit.disabled = 'true';
         return true;
     };
 };
@@ -180,11 +174,9 @@ function zipCheck(){
 
     if (regexCheck) {
         zipError.style.display = 'none';
-        submit.disabled = 'false';
         return false;
     } else {
         zipError.style.display = '';
-        submit.disabled = 'true';
         return true;
     };
 };
@@ -200,11 +192,9 @@ function cvvCheck() {
 
     if (regexCheck) {
         cvvError.style.display = 'none';
-        submit.disabled = 'false';
         return false;
     } else {
         cvvError.style.display = '';
-        submit.disabled = 'true';
         return true;
     };
 };
@@ -256,10 +246,6 @@ activities[0].addEventListener('change', (e) => {
         } else if(checkboxDateTime == dateTime && !checkboxSelection.checked){
             checkboxes[i].disabled = false;
         } 
-        
-        // if(checkboxDateTime == dateTime && checkboxes[i].disabled){
-        //     checkboxes[i].disabled = false; 
-        // }
 
     };
 });
