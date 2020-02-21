@@ -297,6 +297,8 @@ activities[0].addEventListener('change', (e) => {
 activities[0].addEventListener('input', (e) => {
     if(checkboxCheck() < 1){
         activitiesErrorMessage.style.display = '';
+    } else {
+        activitiesErrorMessage.style.display = 'none';
     };
 });
 
